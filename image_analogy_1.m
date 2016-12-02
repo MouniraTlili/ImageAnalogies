@@ -1,2 +1,11 @@
-imgA = im2double(imread('S2/002_sample_a.jpg'));
-imgB = im2double(imread('S2/002_sample_a.jpg'));
+imgA1 = imresize(imread('lac2.png'),1/4);
+imgA2 = imresize(imread('lac1.png'),1/4);
+imgB1 = imresize(imread('mountain1.png'),1/4);
+imgB2 = create_image_analogy1(imgA1, imgA2, imgB1);
+subplot(2,2,1);imshow(imgA1);
+pause(2);
+subplot(2,2,2);imshow(imgA2);
+pause(2);
+subplot(2,2,3);imshow(imgB1);
+pause(2);
+subplot(2,2,4);imshow(uint8(imgB2));
