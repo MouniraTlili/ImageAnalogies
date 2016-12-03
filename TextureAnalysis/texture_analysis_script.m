@@ -1,4 +1,8 @@
 block_size = 41;
+global memoisation_table;
+global ref_table; 
+ref_table = -1 * ones(block_size,block_size);
+memoisation_table = zeros(block_size,block_size,block_size);
 original_image = im2double(imread('texture1.jpeg'));
 h = size(original_image,1);
 w = size(original_image,2);
@@ -19,6 +23,9 @@ for i=1:pool_length
     patch = blocks_pool(:,i);
     new_pool(:,:,:,i)= reshape(patch,[block_size,block_size,3]);   
 end
+l = size(new_pool,4);
+blocks_pool = reshape(new_pool,[block_size^2*3 l]);
+
 %execute the algorithm
-fill_texture(new_image, new_pool,block_size,h,w);
+fill_texture(new_image, blocks_pool,block_size,h,w);
 %imshow(new_image);
